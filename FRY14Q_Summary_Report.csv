@@ -1,0 +1,2 @@
+Total_Loan_Amount,Average_Interest_Rate,Risk_Rating_Distribution,Delinquency_Stats
+2532699115,8.734596000000002,"{'Medium': 3400, 'High': 3337, 'Low': 3263}","{'Delinquent': 3409, 'Default': 3299, 'Current': 3292}"

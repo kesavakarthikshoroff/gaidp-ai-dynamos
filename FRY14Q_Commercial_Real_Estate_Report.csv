@@ -1,0 +1,6 @@
+Borrower_Industry,Total_Loans,Average_Interest_Rate,Risk_Rating_Distribution,Delinquency_Stats,Average_LTV_Ratio,Total_Borrowers
+Finance,130144731,8.673384615384615,"{'High': 183, 'Medium': 169, 'Low': 168}","{'Delinquent': 195, 'Current': 166, 'Default': 159}",0.5647884615384615,520
+Healthcare,120530844,8.66,"{'Low': 156, 'Medium': 156, 'High': 155}","{'Delinquent': 183, 'Default': 144, 'Current': 140}",0.5528051391862956,467
+Manufacturing,118453010,8.606617021276596,"{'High': 164, 'Medium': 155, 'Low': 151}","{'Default': 163, 'Current': 157, 'Delinquent': 150}",0.5685106382978723,470
+Retail,124543646,8.872837022132797,"{'High': 192, 'Medium': 163, 'Low': 142}","{'Current': 171, 'Default': 164, 'Delinquent': 162}",0.5535814889336016,497
+Technology,111424907,8.754595185995623,"{'High': 158, 'Medium': 155, 'Low': 144}","{'Default': 154, 'Delinquent': 152, 'Current': 151}",0.5538730853391685,457

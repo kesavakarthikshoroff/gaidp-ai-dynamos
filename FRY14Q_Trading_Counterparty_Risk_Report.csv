@@ -1,0 +1,5 @@
+Counterparty_Type,Exposure_Amount,Risk_Weight
+Bank,45807843,1.0
+Hedge Fund,43579941,0.88
+Corporation,19603841,0.46
+Sovereign,32248412,0.42

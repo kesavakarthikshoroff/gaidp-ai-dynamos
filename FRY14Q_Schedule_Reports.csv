@@ -1,0 +1,4 @@
+Schedule,Total_Loans,Average_Interest_Rate,Risk_Rating_Distribution,Delinquency_Stats,Average_LTV_Ratio,Total_Borrowers
+Commercial Real Estate (CRE),605097138,8.71428452924098,"{'High': 852, 'Medium': 798, 'Low': 761}","{'Delinquent': 842, 'Current': 785, 'Default': 784}",0.5588137702198258,2411
+Corporate Loan,643346548,8.783931088488645,"{'Medium': 872, 'High': 843, 'Low': 839}","{'Current': 871, 'Delinquent': 868, 'Default': 815}",0.55018010963195,2554
+Retail Loan,1284255429,8.719296921549157,"{'Medium': 1730, 'Low': 1663, 'High': 1642}","{'Default': 1700, 'Delinquent': 1699, 'Current': 1636}",0.5490983118172791,5035
