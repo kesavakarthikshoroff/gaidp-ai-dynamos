@@ -1,0 +1,86 @@
+The FR Y-14Q report contains several detailed rules and instructions related to data validation, reporting formats, materiality thresholds, and counterparty risk reporting. Below is a detailed breakdown of the key rules extracted from the document.
+
+1. General Reporting Guidelines
+Applicability of GAAP: Institutions must follow Generally Accepted Accounting Principles (GAAP) when preparing the FR Y-14Q report​.
+
+Materiality Thresholds: Institutions should report all business segments that exceed 5% of total revenue in any of the last four quarters​.
+
+Submission Deadlines: Reports must be submitted 47 calendar days after quarter-end (March, June, September) and 52 days after December quarter-end​.
+
+Required Restatements: If errors are found in prior reports, institutions must resubmit corrected data back to Q1 2009​.
+
+Legal Attestation: The CFO or an equivalent senior officer must certify the report is accurate​.
+
+2. Data Formatting & Validation Rules
+a) Data Entry & Format
+Dates: Should be formatted as YYYYMMDD​.
+
+Monetary Values: Must be reported in millions of USD with negative values indicated by a minus (-) sign​.
+
+Percentages: Reported as decimal values, where 0.01 = 1%​.
+
+Required Fields: If a field is mandatory but has no data, institutions must enter "0" or "N/A" instead of leaving it blank​.
+
+b) Internal Consistency Checks
+Net Interest Income (NII) must match across multiple schedules (PPNR Submission and PPNR Net Interest Income worksheets)​.
+
+Corporate Revenues & Expenses: Must reconcile with FR Y-9C, Schedule HI​.
+
+Cross-Schedule Alignment: Counterparty IDs and financial data must match across schedules L.1, L.2, L.3, and L.5​.
+
+3. Validation Rules for Financial & Risk Data
+a) Credit Risk & Delinquency Status
+Valid Delinquency Categories: (e.g., 01, 02, 03, 04, 05, 06 for different delinquency states)​.
+
+Probability of Default (PD) & Loss Given Default (LGD): Must be between 0 and 1​.
+
+Gross Charge-Offs vs. Net Charge-Offs: Gross charge-offs cannot be less than net charge-offs​.
+
+Credit Scores: Only commercially available credit scores (e.g., FICO 08, VantageScore 3.0) are allowed​.
+
+b) Counterparty & Market Risk
+Counterparty Risk Categories: Institutions must categorize counterparties by industry, region, and ratings​.
+
+Consolidated Parent Counterparty ID: A globally recognized Legal Entity Identifier (LEI) must be used if available​.
+
+Counterparty Valuation Adjustments (CVA): Must be reported as gross of CVA hedges​.
+
+Stressed CVA (Severely Adverse Scenarios): Must reflect changes in PD and LGD under stressed conditions​.
+
+4. Reporting Rules for Specific Schedules
+a) Schedule A - Retail
+Retail portfolios (auto loans, credit cards, mortgages) must be segmented by risk characteristics​.
+
+Cross-collateralized loans must report the same Net Operating Income (NOI) for each linked loan​.
+
+b) Schedule L - Counterparty Credit Risk
+Top 10 counterparties must be reported based on Credit Valuation Adjustment (CVA) sensitivity​.
+
+Expected Exposure (EE) must be ranked by unstressed and stressed CVA​.
+
+Derivatives & Securities Financing Transactions (SFT) must be ranked by exposure amounts​.
+
+c) Schedule G - PPNR (Pre-Provision Net Revenue)
+Revenue & expense items must match FR Y-9C filings​.
+
+Adjustments for firm’s own debt valuation must be separately reported​.
+
+d) Schedule H - Wholesale Risk
+Corporate loans < $1M must be reported separately if part of a larger exposure​.
+
+Syndicated loan commitments must be reported even if the borrower has not signed​.
+
+e) Schedule F - Trading & Counterparty
+All Counterparty Valuation Adjustments (CVA) must be fully revalued under stress scenarios​.
+
+Single name credit hedges must be reported as negative values for bought protection and positive for sold protection​.
+
+5. Legal & Compliance Requirements
+Foreign Law Exemptions: If a foreign law prohibits data submission, institutions must provide a legal analysis justifying the omission​.
+
+Attestation by CFO: Any material misrepresentation or omission may be subject to legal penalties under 18 USC 1001 & 1007​.
+
+Legal Reserve Reporting: Firms must track pending legal events and associated reserves, but should not report settled cases​.
+
+Conclusion
+The FR Y-14Q report follows strict data validation, materiality, counterparty exposure, and compliance rules. Institutions must ensure that all reported financials reconcile with other regulatory filings, follow GAAP principles, and adhere to submission deadlines. Failure to comply may result in regulatory scrutiny or legal consequences.
