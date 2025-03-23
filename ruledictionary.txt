@@ -1,0 +1,48 @@
+RULES_DICTIONARY = {
+    "Corporate Loan Data": {
+        "Loan Amount": {"type": "float", "min": 1_000_000, "max": None, "mandatory": True},
+        "Probability of Default (PD)": {"type": "float", "min": 0, "max": 1, "mandatory": True},
+        "Loss Given Default (LGD)": {"type": "float", "min": 0, "max": 1, "mandatory": True},
+        "Exposure at Default (EAD)": {"type": "float", "min": 0, "max": None, "mandatory": True},
+        "Syndicated Loan Indicator": {"type": "boolean", "mandatory": True},
+        "Industry Classification": {"type": "string", "valid_values": ["Energy", "Healthcare", "Finance", "Retail", "Technology", "Other"], "mandatory": True}
+    },
+    "Commercial Real Estate (CRE)": {
+        "Loan Amount": {"type": "float", "min": 1_000_000, "max": None, "mandatory": True},
+        "Property Type": {"type": "string", "valid_values": ["Office", "Retail", "Multifamily", "Industrial", "Other"], "mandatory": True},
+        "Loan-to-Value (LTV) Ratio": {"type": "float", "min": 0, "max": 1.5, "mandatory": True},
+        "Debt Service Coverage Ratio (DSCR)": {"type": "float", "min": 0, "max": None, "mandatory": True},
+        "Geographical Region": {"type": "string", "valid_values": ["North America", "Europe", "APAC", "LATAM", "Other"], "mandatory": True}
+    },
+    "Internal Risk Rating": {
+        "Risk Rating": {"type": "integer", "min": 1, "max": 10, "mandatory": True},
+        "Minimum PD": {"type": "float", "min": 0, "max": 1, "mandatory": True},
+        "Maximum PD": {"type": "float", "min": 0, "max": 1, "mandatory": True},
+        "Rating Methodology": {"type": "string", "valid_values": ["Through-the-Cycle", "Point-in-Time", "Hybrid"], "mandatory": True}
+    }
+}
+
+def validate_data(data_entry, rules):
+    """Validates a single data entry against the defined rules."""
+    errors = []
+    for field, constraints in rules.items():
+        value = data_entry.get(field)
+        
+        if constraints.get("mandatory") and value is None:
+            errors.append(f"{field} is mandatory and missing.")
+        elif value is not None:
+            if constraints.get("type") == "float" and not isinstance(value, (int, float)):
+                errors.append(f"{field} must be a float.")
+            if constraints.get("type") == "integer" and not isinstance(value, int):
+                errors.append(f"{field} must be an integer.")
+            if constraints.get("type") == "string" and not isinstance(value, str):
+                errors.append(f"{field} must be a string.")
+            if constraints.get("type") == "boolean" and not isinstance(value, bool):
+                errors.append(f"{field} must be a boolean.")
+            if "min" in constraints and value < constraints["min"]:
+                errors.append(f"{field} must be at least {constraints['min']}.")
+            if "max" in constraints and constraints["max"] is not None and value > constraints["max"]:
+                errors.append(f"{field} must be at most {constraints['max']}.")
+            if "valid_values" in constraints and value not in constraints["valid_values"]:
+                errors.append(f"{field} must be one of {constraints['valid_values']}.")
+    return errors
