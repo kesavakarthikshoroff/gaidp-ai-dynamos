@@ -1,0 +1,725 @@
+{
+  "Corporate Loan Data Fields": {
+    "Customer_ID": {
+      "description": "Unique internal identifier for customer relationships",
+      "validation": "Must be alphanumeric, no special characters, max 20 characters. Cannot be null or empty.",
+      "valid_example": "CUST123456789",
+      "invalid_example": ["CUST#1234!", "", null]
+    },
+    "Internal_ID": {
+      "description": "Unique internal borrower ID",
+      "validation": "Must be alphanumeric, no special characters, max 20 characters. Cannot be null or empty.",
+      "valid_example": "BORR987654321",
+      "invalid_example": ["BORR_9876@", "", null]
+    },
+    "Original_Internal_ID": {
+      "description": "Previous submission's internal ID, if unchanged, use Internal_ID",
+      "validation": "Must match format of Internal_ID, required if changed. Cannot contain spaces or special characters.",
+      "valid_example": "BORR987654320",
+      "invalid_example": ["BORR 987654320","", null]
+    },
+    "Obligor_Name": {
+    "description": "Full legal name; 'Individual' for personal borrowers",
+    "validation": "Must be a valid string, max 100 characters, no special symbols. Cannot be null or empty.",
+    "valid_example": "John Doe Inc.",
+    "invalid_example": ["John Doe @ Corp", null, ""]
+    },
+    "City": {
+      "description": "City where the obligor is domiciled",
+      "validation": "Valid city name, max 50 characters, no numbers or special symbols.",
+      "valid_example": "New York",
+      "invalid_example": ["New York 123"]
+    },
+    "Country": {
+      "description": "Country where the obligor is domiciled (2-letter country code)",
+      "validation": "ISO 3166-1 alpha-2 country code, must be uppercase.",
+      "valid_example": "US",
+      "invalid_example": ["USA"]
+    },
+    "Zip_Code": {
+      "description": "Zip code or foreign mailing code of the obligor",
+      "validation": "Alphanumeric, max 10 characters, no special symbols except hyphen.",
+      "valid_example": "10001-2345",
+      "invalid_example": ["1000@-123"]
+    },
+    "Facility_ID": {
+      "description": "Unique identifier for the loan facility",
+      "validation": "Must be unique across records, alphanumeric, max 20 characters.",
+      "valid_example": "FAC-0012345",
+      "invalid_example": ["FAC@12345"]
+    },
+    "Loan_Type": {
+      "description": "Type of loan provided",
+      "validation": "Enumerated values (Term Loan, Revolving, etc.). Cannot be null.",
+      "valid_example": "Term Loan",
+      "invalid_example": ["Fixed Deposit", ""]
+    },
+    "Currency": {
+      "description": "Currency in which the loan is denominated",
+      "validation": "ISO 4217 three-letter currency code, uppercase.",
+      "valid_example": "USD",
+      "invalid_example": ["US Dollars"]
+    },
+    "Commitment_Amount": {
+      "description": "Total committed loan amount",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Cannot be negative.",
+      "valid_example": "5000000",
+      "invalid_example": ["5,000,000.00", "$5000000", "-100000"]
+    },
+    "Outstanding_Balance": {
+      "description": "Current outstanding balance of the loan",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Cannot be negative.",
+      "valid_example": "2500000",
+      "invalid_example": ["2,500,000.50", "-50000"]
+    },
+    "Interest_Rate": {
+      "description": "Interest rate applicable to the loan",
+      "validation": "Decimal format, max 4 decimal places, between 0 and 100.",
+      "valid_example": "4.2500",
+      "invalid_example":["105.00", "4,25"]
+    },
+    "Maturity_Date": {
+      "description": "Date when the loan matures",
+      "validation": "YYYY-MM-DD format, must be a future date.",
+      "valid_example": "2030-12-31",
+      "invalid_example": ["2015-01-01", "31/12/2030"]
+    },
+    "PD": {
+      "description": "Probability of default (decimal format, 7 places)",
+      "validation": "Decimal format, between 0 and 1, max 7 decimal places.",
+      "valid_example": "0.0234567",
+      "invalid_example": ["1.2345678"]
+    },
+    "LGD": {
+      "description": "Loss given default (percentage)",
+      "validation": "Percentage format, between 0 and 100, max 2 decimal places.",
+      "valid_example": "45.00",
+      "invalid_example": ["120.50"]
+    },
+    "EAD": {
+      "description": "Exposure at default amount",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Cannot be negative.",
+      "valid_example": "1000000",
+      "invalid_example": ["1,000,000.00", "-500000"]
+    },
+    "RWA": {
+      "description": "Risk-weighted assets",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Cannot be negative.",
+      "valid_example": "750000",
+      "invalid_example": ["750,000.00", "-10000"]
+    },
+    "LTV": {
+      "description": "Loan-to-value ratio",
+      "validation": "Decimal format, between 0 and 1, max 4 decimal places.",
+      "valid_example": "0.7500",
+      "invalid_example": ["1.5000"]
+    },
+    
+    "Repayment_Type": {
+      "description": "Method of repayment (e.g., amortizing, bullet)",
+      "validation": "Enumerated values (Amortizing, Bullet, etc.). Cannot be null.",
+      "valid_example": "Amortizing",
+      "invalid_example": ["Random Repayment"]
+    },
+    "Collateral_Type": {
+      "description": "Type of collateral backing the loan",
+      "validation": "Enumerated values (Real Estate, Cash, Securities, etc.). Cannot be null.",
+      "valid_example": "Real Estate",
+      "invalid_example": ["Unknown Asset"]
+    },
+    "Industry": {
+      "description": "Industry classification of the obligor",
+      "validation": "Valid NAICS or SIC code, must be numeric.",
+      "valid_example": "541330",
+      "invalid_example": ["Technology"]
+    },
+    "Sector": {
+      "description": "Economic sector classification",
+      "validation": "Enumerated values (Corporate, SME, etc.). Cannot be null.",
+      "valid_example": "Corporate",
+      "invalid_example": ["Individual"]
+    },
+    "Default_Status": {
+      "description": "Indicates whether the loan is in default",
+      "validation": "Binary flag (0 = No, 1 = Yes). Cannot be null.",
+      "valid_example": "0",
+      "invalid_example": ["Yes"]
+    },
+    "Loan_Purpose": {
+      "description": "Purpose of the loan",
+      "validation": "Enumerated values (General, Acquisition, Refinancing, etc.). Cannot be null.",
+      "valid_example": "Acquisition",
+      "invalid_example": ["Personal Expense"]
+    },
+    "Facility_Type": {
+      "description": "Type of credit facility",
+      "validation": "Enumerated values (Revolving, Term Loan, etc.). Cannot be null.",
+      "valid_example": "Revolving",
+      "invalid_example": ["Other"]
+    },
+    "Origination_Date": {
+      "description": "Date when the loan was originated",
+      "validation": "YYYY-MM-DD format, must be a past or present date.",
+      "valid_example": "2019-05-20",
+      "invalid_example": ["2050-01-01"]
+    },
+    "Internal_Rating": {
+      "description": "Internal credit rating of the obligor",
+      "validation": "Valid rating scale (AAA, AA, A, etc.). Cannot be null.",
+      "valid_example": "A",
+      "invalid_example": ["Excellent"]
+    },
+    "Minimum_PD": {
+      "description": "Minimum probability of default",
+      "validation": "Decimal format, between 0 and 1, max 7 decimal places.",
+      "valid_example": "0.0056789",
+      "invalid_example": ["1.2345678"]
+    },
+    "Maximum_PD": {
+      "description": "Maximum probability of default",
+      "validation": "Decimal format, between 0 and 1, max 7 decimal places.",
+      "valid_example": "0.0567890",
+      "invalid_example": ["1.2345678"]
+    },
+    "Credit_Score": {
+      "description": "Credit score of the borrower",
+      "validation": "Numeric value based on the scoring model (300-850).",
+      "valid_example": "720",
+      "invalid_example": ["Nine Hundred"]
+    },
+    "Annual_Revenue": {
+      "description": "Annual revenue of the obligor",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Cannot be negative.",
+      "valid_example": "5000000",
+      "invalid_example": ["$5,000,000.00"]
+    },
+    "Total_Assets": {
+      "description": "Total assets held by the obligor",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Cannot be negative.",
+      "valid_example": "10000000",
+      "invalid_example": ["10,000,000.00"]
+    },
+    "EBITDA": {
+      "description": "Earnings Before Interest, Taxes, Depreciation, and Amortization",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Can be negative.",
+      "valid_example": "2500000",
+      "invalid_example": ["2.5M"]
+    },
+    "Net_Income": {
+      "description": "Net income of the obligor",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Can be negative.",
+      "valid_example": "500000",
+      "invalid_example": ["500K"]
+    },
+    "Leverage_Ratio": {
+      "description": "Debt to equity leverage ratio",
+      "validation": "Decimal format, must be non-negative, max 4 decimal places.",
+      "valid_example": "2.5000",
+      "invalid_example": ["High"]
+    },
+    "Debt_Service_Coverage_Ratio": {
+      "description": "Debt service coverage ratio",
+      "validation": "Decimal format, must be non-negative, max 4 decimal places.",
+      "valid_example": "1.2500",
+      "invalid_example": ["Low"]
+    },
+    "Guarantor_Name": {
+      "description": "Name of the guarantor, if applicable",
+      "validation": "Valid string, max 100 characters, no special symbols.",
+      "valid_example": "ABC Holdings Inc.",
+      "invalid_example": ["@XYZ_Corp"]
+    },
+    "Guarantor_Assets": {
+      "description": "Total assets of the guarantor",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Cannot be negative.",
+      "valid_example": "20000000",
+      "invalid_example": ["$20,000,000.00"]
+    },
+
+   
+    "Guarantor_Income": {
+      "description": "Total income of the guarantor",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Cannot be negative.",
+      "valid_example": "5000000",
+      "invalid_example": ["5 Million"]
+    },
+    "Parent_Company": {
+      "description": "Parent company of the obligor, if applicable",
+      "validation": "Valid string, max 100 characters, no special symbols.",
+      "valid_example": "Global Holdings LLC",
+      "invalid_example": ["@ParentCorp"]
+    },
+    "Sub_Limit": {
+      "description": "Sub-limit within a larger credit facility",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Cannot be negative.",
+      "valid_example": "1000000",
+      "invalid_example": ["$1,000,000.00"]
+    },
+    "Covenant_Indicator": {
+      "description": "Indicates the presence of loan covenants",
+      "validation": "Binary flag (0 = No, 1 = Yes). Cannot be null.",
+      "valid_example": "1",
+      "invalid_example": ["Yes"]
+    },
+    "Loan_Spread": {
+      "description": "Loan spread over base interest rate",
+      "validation": "Decimal format, max 4 decimal places, between 0 and 100.",
+      "valid_example": "2.5000",
+      "invalid_example": ["250"]
+    },
+    "Syndication_Status": {
+      "description": "Status of loan syndication",
+      "validation": "Enumerated values (Lead, Participant, etc.). Cannot be null.",
+      "valid_example": "Lead",
+      "invalid_example": ["Middleman"]
+    },
+    "Syndication_Percentage": {
+      "description": "Percentage of loan syndicated",
+      "validation": "Percentage format, between 0 and 100, max 2 decimal places.",
+      "valid_example": "50.00",
+      "invalid_example": ["120.50"]
+    },
+    "Underwriting_Agency": {
+      "description": "Agency responsible for underwriting the loan",
+      "validation": "Valid string, max 100 characters.",
+      "valid_example": "XYZ Underwriters Inc.",
+      "invalid_example": ["123_UW"]
+    },
+    "Basel_Category": {
+      "description": "Basel regulatory capital category",
+      "validation": "Enumerated values (Corporate, SME, etc.). Cannot be null.",
+      "valid_example": "Corporate",
+      "invalid_example": ["N/A"]
+    },
+    "Refinancing_Status": {
+      "description": "Indicates if the loan is a refinancing",
+      "validation": "Binary flag (0 = No, 1 = Yes). Cannot be null.",
+      "valid_example": "0",
+      "invalid_example": ["Maybe"]
+    },
+    "Facility_Term": {
+      "description": "Term of the loan facility in months",
+      "validation": "Whole number, must be greater than zero.",
+      "valid_example": "60",
+      "invalid_example": ["5.5"]
+    },
+    "Drawn_Amount": {
+      "description": "Amount drawn under the facility",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Cannot be negative.",
+      "valid_example": "2000000",
+      "invalid_example": ["2,000,000.00"]
+    },
+    "Unused_Commitment": {
+      "description": "Unused commitment amount",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Cannot be negative.",
+      "valid_example": "1000000",
+      "invalid_example": ["$1,000,000.00"]
+    },
+    "Obligor_Risk_Rating": {
+      "description": "Internal risk rating of the obligor",
+      "validation": "Valid rating scale (AAA, AA, A, etc.). Cannot be null.",
+      "valid_example": "BBB",
+      "invalid_example": ["Medium Risk"]
+    },
+    "Market_Valuation": {
+      "description": "Market valuation of collateral or loan",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Cannot be negative.",
+      "valid_example": "5000000",
+      "invalid_example": ["5M"]
+    },
+    "Total_Exposures": {
+      "description": "Total exposures including undrawn commitments",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Cannot be negative.",
+      "valid_example": "8000000",
+      "invalid_example": ["8,000,000.00"]
+    },
+    "Regulatory_Capital": {
+      "description": "Regulatory capital requirements",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Cannot be negative.",
+      "valid_example": "3000000",
+      "invalid_example": ["$3,000,000.00"]
+    },
+    "Primary_Collateral_Value": {
+      "description": "Value of primary collateral securing the loan",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Cannot be negative.",
+      "valid_example": "4000000",
+      "invalid_example": ["4,000,000.00"]
+    },
+    "Secondary_Collateral_Value": {
+      "description": "Value of secondary collateral, if any",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Cannot be negative.",
+      "valid_example": "1000000",
+      "invalid_example": ["$1,000,000.00"]
+    },
+
+    "Secondary_Collateral_Value": {
+      "description": "Value of secondary collateral, if any",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Cannot be negative.",
+      "valid_example": "1000000",
+      "invalid_example": ["$1,000,000.00"]
+    },
+    "Risk_Adjusted_Exposure": {
+      "description": "Risk-adjusted exposure amount",
+      "validation": "Must be a whole number (integer). No decimals, commas, or symbols allowed. Cannot be negative.",
+      "valid_example": "7500000",
+      "invalid_example": ["7,500,000.50"]
+    },
+    "Net_Charge_Offs": {
+      "description": "Net charge-offs against the loan",
+      "validation": "Must be a whole number (integer). Can be negative if indicating a recovery.",
+      "valid_example": "-50000",
+      "invalid_example": ["50K"]
+    },
+    "Interest_Expense": {
+      "description": "Interest expense incurred on the loan",
+      "validation": "Must be a whole number (integer). Cannot be negative.",
+      "valid_example": "150000",
+      "invalid_example": ["$150,000.00"]
+    },
+    "Fee_Income": {
+      "description": "Income generated from fees on the loan",
+      "validation": "Must be a whole number (integer). Cannot be negative.",
+      "valid_example": "20000",
+      "invalid_example": ["20K"]
+    },
+    "Internal_Loan_Grade": {
+      "description": "Internal grading of the loan",
+      "validation": "Valid string, max 10 characters.",
+      "valid_example": "A1",
+      "invalid_example": ["Grade Excellent"]
+    },
+    "Annual_Loss_Rate": {
+      "description": "Annualized loss rate on the loan",
+      "validation": "Percentage format, between 0 and 100, max 2 decimal places.",
+      "valid_example": "3.25",
+      "invalid_example": ["105"]
+    },
+    "Credit_Enhancement_Type": {
+      "description": "Type of credit enhancement applied",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "Guarantee",
+      "invalid_example": ["Super Strong Protection"]
+    },
+    "Regulatory_Limit": {
+      "description": "Regulatory exposure limits applicable",
+      "validation": "Must be a whole number (integer). Cannot be negative.",
+      "valid_example": "5000000",
+      "invalid_example": ["$5,000,000.00"]
+    },
+    "Guarantee_Amount": {
+      "description": "Amount of loan guaranteed by a third party",
+      "validation": "Must be a whole number (integer). Cannot be negative.",
+      "valid_example": "2500000",
+      "invalid_example": ["$2.5M"]
+    },
+    "Synthetic_Loan_Flag": {
+      "description": "Indicates if the loan is synthetic",
+      "validation": "Binary flag (0 = No, 1 = Yes). Cannot be null.",
+      "valid_example": "0",
+      "invalid_example": ["Maybe"]
+    },
+    "Cross_Collateralization": {
+      "description": "Indicates if the loan is cross-collateralized",
+      "validation": "Binary flag (0 = No, 1 = Yes). Cannot be null.",
+      "valid_example": "1",
+      "invalid_example": ["Yes"]
+    },
+    "Loan_Securitization_Status": {
+      "description": "Indicates if the loan has been securitized",
+      "validation": "Binary flag (0 = No, 1 = Yes). Cannot be null.",
+      "valid_example": "0",
+      "invalid_example": ["Not Sure"]
+    },
+    "Basel_PD": {
+      "description": "Basel-compliant probability of default",
+      "validation": "Decimal format, between 0 and 1, max 7 decimal places.",
+      "valid_example": "0.0456789",
+      "invalid_example": ["1.2"]
+    },
+    "Basel_LGD": {
+      "description": "Basel-compliant loss given default",
+      "validation": "Percentage format, between 0 and 100, max 2 decimal places.",
+      "valid_example": "50.00",
+      "invalid_example": ["110.5"]
+    },
+    "Basel_EAD": {
+      "description": "Basel-compliant exposure at default",
+      "validation": "Must be a whole number (integer). Cannot be negative.",
+      "valid_example": "6000000",
+      "invalid_example": ["6,000,000.00"]
+    },
+    "Basel_RWA": {
+      "description": "Basel-compliant risk-weighted assets",
+      "validation": "Must be a whole number (integer). Cannot be negative.",
+      "valid_example": "7000000",
+      "invalid_example": ["$7M"]
+    },
+    "Supervisory_Review": {
+      "description": "Regulatory supervisory review classification",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "SR 1",
+      "invalid_example": ["Supervisory High"]
+    },
+ 
+    "Supervisory_Review": {
+      "description": "Regulatory supervisory review classification",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "SR 1",
+      "invalid_example": ["Supervisory High"]
+    },
+    "Portfolio_Name": {
+      "description": "Name of the loan portfolio",
+      "validation": "Valid string, max 100 characters.",
+      "valid_example": "Corporate Loans",
+      "invalid_example": ["@Portfolio1"]
+    },
+    "Economic_Region": {
+      "description": "Economic region classification",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "North America",
+      "invalid_example": ["12345"]
+    },
+    "Risk_Rating_Agency": {
+      "description": "Agency providing external credit ratings",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "Moody's",
+      "invalid_example": ["Credit Agency 123"]
+    },
+    "Credit_Model_Type": {
+      "description": "Type of credit risk model used",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "Internal Model",
+      "invalid_example": ["Undefined Model"]
+    },
+    "Internal_Model_Type": {
+      "description": "Internal credit model classification",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "PD/LGD Model",
+      "invalid_example": ["Unknown"]
+    },
+    "Historical_Default_Indicator": {
+      "description": "Indicates past default history",
+      "validation": "Binary flag (0 = No, 1 = Yes). Cannot be null.",
+      "valid_example": "1",
+      "invalid_example": ["Yes"]
+    },
+    "Workout_Status": {
+      "description": "Current workout status of the loan",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "Active Workout",
+      "invalid_example": ["Working"]
+    },
+    "Credit_Event_Trigger": {
+      "description": "Triggers for a credit event",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "Covenant Breach",
+      "invalid_example": ["Triggered"]
+    },
+    "Interest_Only_Period": {
+      "description": "Period when only interest payments are required",
+      "validation": "Whole number, represents months, cannot be negative.",
+      "valid_example": "12",
+      "invalid_example": ["-5"]
+    },
+    "Non_Performing_Loan_Flag": {
+      "description": "Indicates if the loan is non-performing",
+      "validation": "Binary flag (0 = No, 1 = Yes). Cannot be null.",
+      "valid_example": "0",
+      "invalid_example": ["Maybe"]
+    },
+    "Special_Mention_Flag": {
+      "description": "Flag for loans requiring special mention",
+      "validation": "Binary flag (0 = No, 1 = Yes). Cannot be null.",
+      "valid_example": "1",
+      "invalid_example": ["Yes"]
+    },
+    "Watchlist_Flag": {
+      "description": "Indicates if the loan is on a watchlist",
+      "validation": "Binary flag (0 = No, 1 = Yes). Cannot be null.",
+      "valid_example": "0",
+      "invalid_example": ["Unclear"]
+    },
+    "Amortization_Type": {
+      "description": "Type of amortization schedule",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "Straight Line",
+      "invalid_example": ["Unknown Type"]
+    },
+    "Loan_Adjustment_Factor": {
+      "description": "Factor applied to adjust loan risk",
+      "validation": "Decimal format, max 4 decimal places, between 0 and 1.",
+      "valid_example": "0.8500",
+      "invalid_example": ["1.5"]
+    },
+    "Internal_Credit_Model": {
+      "description": "Internal model used for credit assessment",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "PD Model",
+      "invalid_example": ["123_Model"]
+    },
+    "Data_Quality_Score": {
+      "description": "Score assessing data quality",
+      "validation": "Whole number, between 0 and 100.",
+      "valid_example": "85",
+      "invalid_example": ["110"]
+    },
+    "Regulatory_Compliance_Status": {
+      "description": "Compliance with regulatory requirements",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "Fully Compliant",
+      "invalid_example": ["Non-Standard"]
+    },
+    "Liquidity_Facility": {
+      "description": "Liquidity support facility details",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "Committed Facility",
+      "invalid_example": ["Support Unknown"]
+    },
+ 
+    "Liquidity_Facility": {
+      "description": "Liquidity support facility details",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "Committed Facility",
+      "invalid_example": ["Support Unknown"]
+    },
+    "Credit_Substitution": {
+      "description": "Indicates if credit substitution applies",
+      "validation": "Binary flag (0 = No, 1 = Yes). Cannot be null.",
+      "valid_example": "0",
+      "invalid_example": ["Unknown"]
+    },
+    "Final_Maturity_Term": {
+      "description": "Final maturity term of the loan in months",
+      "validation": "Whole number, must be greater than zero.",
+      "valid_example": "120",
+      "invalid_example": ["10.5"]
+    },
+    "Payment_Structure": {
+      "description": "Structure of loan payments",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "Equal Installments",
+      "invalid_example": ["Irregular"]
+    },
+    "Loan_Covenant_Status": {
+      "description": "Compliance status of loan covenants",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "Compliant",
+      "invalid_example": ["Not Following"]
+    },
+    "Loan_Aging_Category": {
+      "description": "Category based on loan age",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "0-30 Days",
+      "invalid_example": ["Old"]
+    },
+    "Underwriter_Name": {
+      "description": "Name of the underwriter",
+      "validation": "Valid string, max 100 characters.",
+      "valid_example": "ABC Underwriters",
+      "invalid_example": ["123 UW"]
+    },
+    "Loan_Recovery_Score": {
+      "description": "Score estimating loan recovery potential",
+      "validation": "Whole number, between 0 and 100.",
+      "valid_example": "75",
+      "invalid_example": ["High"]
+    },
+    "Default_Probability_Score": {
+      "description": "Score estimating probability of default",
+      "validation": "Whole number, between 0 and 100.",
+      "valid_example": "45",
+      "invalid_example": ["Moderate"]
+    },
+    "Portfolio_Segment": {
+      "description": "Segment classification within the portfolio",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "Commercial Loans",
+      "invalid_example": ["General"]
+    },
+    "Credit_Exposure_Type": {
+      "description": "Type of credit exposure",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "Direct Lending",
+      "invalid_example": ["N/A"]
+    },
+    "Regulatory_Capital_Adjustment": {
+      "description": "Adjustments to regulatory capital",
+      "validation": "Must be a whole number (integer). Cannot be negative.",
+      "valid_example": "1000000",
+      "invalid_example": ["$1,000,000.00"]
+    },
+    "Non_Performing_Exposures": {
+      "description": "Amount of non-performing exposures",
+      "validation": "Must be a whole number (integer). Cannot be negative.",
+      "valid_example": "5000000",
+      "invalid_example": ["5M"]
+    },
+    "Loss_Given_Default": {
+      "description": "Loss given default percentage",
+      "validation": "Percentage format, between 0 and 100, max 2 decimal places.",
+      "valid_example": "55.00",
+      "invalid_example": ["110.50"]
+    },
+    "Prepayment_Risk": {
+      "description": "Risk of loan prepayment",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "Moderate",
+      "invalid_example": ["Yes"]
+    },
+    "Loan_Modification_Status": {
+      "description": "Modification history of the loan",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "Modified",
+      "invalid_example": ["Changed"]
+    },
+    "Borrower_Restructuring": {
+      "description": "Indicates if borrower has undergone restructuring",
+      "validation": "Binary flag (0 = No, 1 = Yes). Cannot be null.",
+      "valid_example": "1",
+      "invalid_example": ["Maybe"]
+    },
+    "Historical_Default_Rate": {
+      "description": "Past default rates",
+      "validation": "Percentage format, between 0 and 100, max 2 decimal places.",
+      "valid_example": "10.25",
+      "invalid_example": ["105.00"]
+    },
+    "Loss_Severity": {
+      "description": "Estimated severity of loss",
+      "validation": "Percentage format, between 0 and 100, max 2 decimal places.",
+      "valid_example": "40.00",
+      "invalid_example": ["110.50"]
+    },
+    "Economic_Capital": {
+      "description": "Capital required based on economic risk",
+      "validation": "Must be a whole number (integer). Cannot be negative.",
+      "valid_example": "3000000",
+      "invalid_example":[ "3M"]
+    },
+    "Expected_Credit_Loss": {
+      "description": "Expected credit loss estimate",
+      "validation": "Must be a whole number (integer). Cannot be negative.",
+      "valid_example": "2500000",
+      "invalid_example":[ "$2.5M"]
+    },
+    "Stress_Test_Scenario": {
+      "description": "Scenario-based stress test results",
+      "validation": "Valid string, max 50 characters.",
+      "valid_example": "Severe Recession",
+      "invalid_example": ["Bad Market"]
+    },
+    "Recovery_Percentage": {
+      "description": "Estimated recovery percentage",
+      "validation": "Percentage format, between 0 and 100, max 2 decimal places.",
+      "valid_example": "65.00",
+      "invalid_example": ["120.50"]
+    },
+    "Net_Loss_Given_Default": {
+      "description": "Net LGD post-recovery",
+      "validation": "Percentage format, between 0 and 100, max 2 decimal places.",
+      "valid_example": "30.00",
+      "invalid_example": ["105.00"]
+    }
+  }
+}
+
